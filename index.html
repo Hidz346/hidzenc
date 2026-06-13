@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://www.gobox.my.id/file/IcHjU.png">
+<title>Hidz | Obfuscator</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E0;
+  --white: #FFFDF7;
+  --black: #0D0D0D;
+  --purple: #6D28D9;
+  --purple-light: #EDE9FE;
+  --pink: #DB2777;
+  --yellow: #F59E0B;
+  --yellow-light: #FEF3C7;
+  --green: #059669;
+  --green-light: #D1FAE5;
+  --shadow-sm: 3px 3px 0 var(--black);
+  --shadow-md: 5px 5px 0 var(--black);
+  --border: 2.5px solid var(--black);
+  --radius: 6px;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background-color: var(--cream);
+  background-image: radial-gradient(var(--black) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--black);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+.container { max-width: 900px; margin: 0 auto; }
+
+/* HEADER */
+.header { text-align: center; margin-bottom: 2.5rem; }
+.header-badge {
+  display: inline-block;
+  background: var(--yellow);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.875rem;
+  border-radius: 999px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.logo-icon {
+  width: 54px; height: 54px;
+  background: var(--purple);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+h1 .brand { color: var(--purple); }
+.subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  max-width: 480px;
+  margin: 0.6rem auto 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* FEATURE TAGS */
+.features {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2rem; justify-content: center;
+}
+.feature-tag {
+  background: var(--white);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* CARD */
+.card {
+  background: var(--white);
+  border: var(--border);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.card-header {
+  padding: 0.7rem 1.25rem;
+  border-bottom: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.card-header h2 { font-size: 0.92rem; font-weight: 700; letter-spacing: 0.2px; }
+.card-header.ch-yellow { background: var(--yellow); }
+.card-header.ch-purple { background: var(--purple); color: #fff; }
+.card-header.ch-green  { background: #10B981; color: #fff; }
+.card-body { padding: 1.25rem; }
+
+/* OPTION SECTIONS */
+.option-section { margin-bottom: 1rem; }
+.option-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+.option-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.option-pill {
+  padding: 0.35rem 0.875rem;
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0 var(--black);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--cream);
+  transition: transform 0.08s, box-shadow 0.08s;
+  user-select: none;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.option-pill:hover { background: var(--yellow-light); }
+.option-pill:active { transform: translate(2px,2px); box-shadow: 0 0 0 var(--black); }
+.option-pill.active { background: var(--yellow); }
+
+/* DIVIDER */
+.divider { height: 2px; background: #DDD8CC; margin: 1rem 0; }
+
+/* TOGGLE */
+.toggle-row { display: flex; align-items: center; gap: 0.75rem; }
+.toggle-switch { position: relative; width: 52px; height: 28px; cursor: pointer; flex-shrink: 0; }
+.toggle-switch input { opacity:0; width:0; height:0; position:absolute; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: #CCC;
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+.toggle-switch input:checked + .toggle-track { background: var(--green); }
+.toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 18px; height: 18px;
+  background: #fff;
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+.toggle-switch input:checked ~ .toggle-thumb { transform: translateX(24px); }
+.toggle-label { font-size: 0.88rem; font-weight: 600; }
+.toggle-label small { font-weight: 400; color: #777; font-size: 0.78rem; margin-left: 0.25rem; }
+
+/* TEXTAREA */
+textarea {
+  width: 100%;
+  min-height: 260px;
+  background: var(--cream);
+  border: 2px solid var(--black);
+  border-radius: var(--radius);
+  padding: 0.875rem 1rem;
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+textarea:focus { border-color: var(--purple); box-shadow: 3px 3px 0 var(--purple); }
+textarea[readonly] { background: #EEE9D8; cursor: default; }
+textarea[readonly]:focus { border-color: var(--black); box-shadow: none; }
+
+/* WARN BOX */
+.warn-box {
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow-sm);
+  background: var(--yellow-light);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+  display: flex; gap: 0.5rem; align-items: flex-start;
+}
+
+/* BUTTONS */
+.btn-group { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+.btn {
+  padding: 0.7rem 1.25rem;
+  border: 2.5px solid var(--black);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: transform 0.08s, box-shadow 0.08s;
+  user-select: none;
+  text-decoration: none;
+}
+.btn:active { transform: translate(3px,3px); box-shadow: 0px 0px 0 var(--black); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+.btn-obfuscate { background: var(--purple); color: #fff; }
+.btn-convert   { background: var(--yellow); color: var(--black); }
+.btn-import    { background: var(--white);  color: var(--black); }
+.btn-copy      { background: var(--black);  color: #fff; }
+.btn-download  { background: var(--green);  color: #fff; }
+.btn-clear     { background: #FEE2E2; color: #991B1B; border-color: #991B1B; box-shadow: 3px 3px 0 #991B1B; }
+.btn-clear:active { box-shadow: 0 0 0 #991B1B; }
+
+/* STATUS */
+.status-bar {
+  display: none; align-items: center; gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  background: var(--purple-light);
+  border: 2px solid var(--purple);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem; font-weight: 600; color: var(--purple);
+}
+.status-bar.visible { display: flex; }
+.spinner {
+  width: 18px; height: 18px;
+  border: 2.5px solid var(--purple);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.success-box {
+  display: none; align-items: center; gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  background: var(--green-light);
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem; font-weight: 600; color: #065F46;
+}
+.success-box.visible { display: flex; }
+
+.output-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+.output-meta { font-size: 0.78rem; color: rgba(255,255,255,0.75); }
+
+/* Y2K STARS */
+.star { display: inline-block; color: var(--yellow); animation: twinkle 2s infinite alternate; }
+@keyframes twinkle { from { opacity:1; transform:scale(1); } to { opacity:0.4; transform:scale(0.8); } }
+
+.footer { text-align: center; font-size: 0.78rem; color: #999; margin-top: 2.5rem; font-weight: 600; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  body { padding: 1rem 0.75rem 3rem; }
+  h1 { font-size: 1.9rem; }
+  .btn-group { gap: 0.5rem; }
+  .btn { padding: 0.6rem 0.9rem; font-size: 0.82rem; }
+  .logo-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-badge">✦ HidzProject Tools ✦</div>
+    <div class="logo">
+      <div class="logo-icon">🔐</div>
+      <h1><span class="brand">Hidz</span> Obfuscator</h1>
+    </div>
+    <p class="subtitle">Convert HTML, CSS &amp; Scripts into a single, obfuscated injectable JavaScript</p>
+  </div>
+
+  <!-- FEATURE TAGS -->
+  <div class="features">
+    <span class="feature-tag">📥 Import HTML</span>
+    <span class="feature-tag">📦 Download</span>
+    <span class="feature-tag">📄 Complete HTML</span>
+    <span class="feature-tag">⚙️ Internal Scripts</span>
+    <span class="feature-tag">🎨 Inline CSS</span>
+    <span class="feature-tag">🔐 JS Obfuscation</span>
+    <span class="feature-tag">🔧 Auto-fix</span>
+  </div>
+
+  <!-- OPTIONS CARD -->
+  <div class="card">
+    <div class="card-header ch-yellow">
+      <h2>⚙️ Options</h2>
+    </div>
+    <div class="card-body">
+
+      <!-- Injection Method -->
+      <div class="option-section">
+        <div class="option-label">Injection Method</div>
+        <div class="option-pills" id="injectionPills">
+          <button class="option-pill active" data-value="replace">🔄 Replace entire page</button>
+          <button class="option-pill" data-value="body-only">📋 Inject into body only</button>
+          <button class="option-pill" data-value="append">➕ Append to existing content</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Processing Mode -->
+      <div class="option-section">
+        <div class="option-label">Processing Mode</div>
+        <div class="option-pills" id="processingPills">
+          <button class="option-pill active" data-value="smart">🧠 Smart Mode (auto-detect)</button>
+          <button class="option-pill" data-value="fragment">🧩 Force as HTML Fragment</button>
+          <button class="option-pill" data-value="complete">📄 Force as Complete Document</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- JS Obfuscation Toggle -->
+      <div class="option-section" style="margin-bottom:0;">
+        <div class="option-label">JS Obfuscation Strength</div>
+        <div class="toggle-row">
+          <label class="toggle-switch">
+            <input type="checkbox" id="obfToggle" checked>
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
+          <div class="toggle-label">
+            High-Strength Obfuscation
+            <small>(RC4 encryption · string array · control flow flattening)</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INPUT CARD -->
+  <div class="card">
+    <div class="card-header ch-purple">
+      <h2>📝 Input HTML</h2>
+      <span class="output-meta" id="inputStats">0 chars</span>
+    </div>
+    <div class="card-body">
+      <textarea id="inputHtml" placeholder="<html>&#10;  <head><title>Your Page</title></head>&#10;  <body>&#10;    <h1>Hello World</h1>&#10;  </body>&#10;</html>"></textarea>
+      <div class="warn-box">
+        ⚠️ <span>If the HTML is too large and causes an error when obfuscating, try <strong>minifying it</strong> first.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="btn-group">
+    <button class="btn btn-convert"   id="convertBtn">📄 Convert HTML</button>
+    <button class="btn btn-obfuscate" id="obfuscateBtn">🔐 Convert + Obfuscate</button>
+    <button class="btn btn-import"    id="uploadBtn">📥 Import File</button>
+    <button class="btn btn-clear"     id="clearBtn">🗑 Clear</button>
+    <input type="file" id="fileInput" accept=".html,.htm" style="display:none;">
+  </div>
+
+  <!-- STATUS / SUCCESS -->
+  <div class="status-bar" id="statusBar">
+    <div class="spinner"></div>
+    <span id="statusText">🔐 Obfuscating JavaScript... This may take a few seconds</span>
+  </div>
+  <div class="success-box" id="successBox">
+    ✅ <span id="successText">Done!</span>
+  </div>
+
+  <!-- OUTPUT CARD -->
+  <div class="card">
+    <div class="card-header ch-green">
+      <h2>📤 Output Script Injector</h2>
+      <span class="output-meta" id="outputStats">0 chars</span>
+    </div>
+    <div class="card-body">
+      <textarea id="outputJs" placeholder="Obfuscated JavaScript will appear here..." readonly></textarea>
+      <div class="output-actions">
+        <button class="btn btn-copy"     id="copyBtn">📋 Copy Result</button>
+        <button class="btn btn-download" id="downloadBtn">📦 Download HTML</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="star">✦</span> ©Hidz Obfuscator 2026 — HidzProject <span class="star">✦</span>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js"></script>
+<script>
+/* =============================================
+   HIDZ OBFUSCATOR — Core Logic
+   ============================================= */
+
+const inputHtml    = document.getElementById('inputHtml');
+const outputJs     = document.getElementById('outputJs');
+const obfuscateBtn = document.getElementById('obfuscateBtn');
+const convertBtn   = document.getElementById('convertBtn');
+const uploadBtn    = document.getElementById('uploadBtn');
+const downloadBtn  = document.getElementById('downloadBtn');
+const copyBtn      = document.getElementById('copyBtn');
+const clearBtn     = document.getElementById('clearBtn');
+const fileInput    = document.getElementById('fileInput');
+const statusBar    = document.getElementById('statusBar');
+const statusText   = document.getElementById('statusText');
+const successBox   = document.getElementById('successBox');
+const successText  = document.getElementById('successText');
+const inputStats   = document.getElementById('inputStats');
+const outputStats  = document.getElementById('outputStats');
+const obfToggle    = document.getElementById('obfToggle');
+
+// ── Option state ──────────────────────────────
+let injectionMethod = 'replace';
+let processingMode  = 'smart';
+
+function setupPills(containerId, onChange) {
+    const container = document.getElementById(containerId);
+    container.querySelectorAll('.option-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            container.querySelectorAll('.option-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            onChange(pill.dataset.value);
+        });
+    });
+}
+
+setupPills('injectionPills', v => injectionMethod = v);
+setupPills('processingPills', v => processingMode  = v);
+
+// ── Char counter ──────────────────────────────
+inputHtml.addEventListener('input', () => {
+    inputStats.textContent = inputHtml.value.length.toLocaleString() + ' chars';
+});
+
+// ── HTML helpers ──────────────────────────────
+function minifyHTML(html) {
+    return html.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
+}
+
+function escapeForJS(html) {
+    // JSON.stringify gives a safe quoted string.
+    // Break </script and <!-- so the browser parser doesn't close the outer <script> tag.
+    return JSON.stringify(html)
+        .replace(/<\/script/gi, '<\\/script')
+        .replace(/<!\-\-/g, '<\\!--');
+}
+
+function isCompleteHTML(html) {
+    const l = html.toLowerCase();
+    return l.includes('<!doctype') || l.includes('<html');
+}
+
+function extractBodyContent(html) {
+    const m = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    return m ? m[1].trim() : html;
+}
+
+// ── Injector code builder ─────────────────────
+function buildInjectorCode(rawHtml) {
+    const minified = minifyHTML(rawHtml);
+
+    // Determine if input is a complete HTML document
+    let isComplete;
+    if      (processingMode === 'smart')    isComplete = isCompleteHTML(minified);
+    else if (processingMode === 'complete') isComplete = true;
+    else                                    isComplete = false;   // fragment
+
+    let content = minified;
+
+    /* ── Replace entire page ── */
+    if (injectionMethod === 'replace') {
+        const escaped = escapeForJS(content);
+        return (
+`(function(){
+  try {
+    var h=${escaped};
+    // Clear any stray timers from obfuscator boilerplate before replacing page
+    (function(){var i=window.setTimeout(function(){},0);while(i--){window.clearTimeout(i);window.clearInterval(i);}})();
+    document.open();
+    document.write(h);
+    document.close();
+  } catch(e){}
+})();`
+        );
+    }
+
+    /* ── Inject into body only ── */
+    if (injectionMethod === 'body-only') {
+        if (isComplete) content = extractBodyContent(minified) || minified;
+        const escaped = escapeForJS(content);
+        return (
+`(function(){
+  try {
+    var h=${escaped};
+    document.body.innerHTML = h;
+    // Re-execute <script> tags (innerHTML assignment doesn't run them)
+    [].slice.call(document.body.querySelectorAll('script')).forEach(function(s){
+      var n = document.createElement('script');
+      n.type = s.type || 'text/javascript';
+      if (s.src) { n.src = s.src; n.async = false; }
+      else { n.appendChild(document.createTextNode(s.textContent)); }
+      s.parentNode.replaceChild(n, s);
+    });
+  } catch(e){}
+})();`
+        );
+    }
+
+    /* ── Append to existing content ── */
+    if (isComplete) content = extractBodyContent(minified) || minified;
+    const escaped = escapeForJS(content);
+    return (
+`(function(){
+  try {
+    var h=${escaped};
+    var d = document.createElement('div');
+    d.innerHTML = h;
+    // Pull out scripts before appending so we can re-execute them
+    var ss = [].slice.call(d.querySelectorAll('script'));
+    ss.forEach(function(s){ s.parentNode.removeChild(s); });
+    while (d.firstChild) { document.body.appendChild(d.firstChild); }
+    ss.forEach(function(s){
+      var n = document.createElement('script');
+      if (s.src) { n.src = s.src; n.async = false; }
+      else { n.appendChild(document.createTextNode(s.textContent)); }
+      document.body.appendChild(n);
+    });
+  } catch(e){}
+})();`
+    );
+}
+
+// ── Status helpers ────────────────────────────
+function setStatus(msg) {
+    statusText.textContent = msg;
+    statusBar.classList.add('visible');
+    successBox.classList.remove('visible');
+}
+function setSuccess(msg) {
+    successText.textContent = msg;
+    successBox.classList.add('visible');
+    statusBar.classList.remove('visible');
+    outputStats.textContent = outputJs.value.length.toLocaleString() + ' chars';
+}
+function hideStatus() {
+    statusBar.classList.remove('visible');
+    successBox.classList.remove('visible');
+}
+
+// ── Main processor ────────────────────────────
+async function processHTML(withObfuscation) {
+    const raw = inputHtml.value.trim();
+    if (!raw) {
+        outputJs.value = '// Error: No HTML input provided';
+        hideStatus();
+        return;
+    }
+
+    const injectorCode = buildInjectorCode(raw);
+
+    /* Convert only (no obfuscation) */
+    if (!withObfuscation) {
+        outputJs.value = `<script>${injectorCode}<\/script>`;
+        setSuccess(`Converted! Output: ${outputJs.value.length.toLocaleString()} chars`);
+        return;
+    }
+
+    /* Convert + Obfuscate */
+    setStatus('🔐 Obfuscating JavaScript... This may take a few seconds');
+    await new Promise(r => setTimeout(r, 60)); // let the UI repaint
+
+    try {
+        const highStrength = obfToggle.checked;
+
+        const opts = highStrength ? {
+            // ── High-strength (RC4 + control flow) ──
+            compact: true,
+            controlFlowFlattening: true,
+            controlFlowFlatteningThreshold: 1,
+            deadCodeInjection: true,
+            deadCodeInjectionThreshold: 0.4,
+            debugProtection: true,
+            debugProtectionInterval: 0,        // 0 = no repeating interval (prevents page-freeze after inject)
+            disableConsoleOutput: false,        // false = don't patch console (would leak into injected page)
+            identifierNamesGenerator: 'hexadecimal',
+            log: false,
+            numbersToExpressions: true,
+            renameGlobals: false,
+            rotateStringArray: true,
+            selfDefending: true,
+            shuffleStringArray: true,
+            simplify: true,
+            splitStrings: true,
+            splitStringsChunkLength: 5,
+            stringArray: true,
+            stringArrayCallsTransform: true,
+            stringArrayCallsTransformThreshold: 1,
+            stringArrayEncoding: ['rc4'],
+            stringArrayIndexShift: true,
+            stringArrayWrappersChainedCalls: true,
+            stringArrayWrappersCount: 5,
+            stringArrayWrappersParametersMaxCount: 5,
+            stringArrayWrappersType: 'function',
+            stringArrayThreshold: 1,
+            transformObjectKeys: true,
+            unicodeEscapeSequence: false
+        } : {
+            // ── Low-strength (Base64, fast) ──
+            compact: true,
+            identifierNamesGenerator: 'hexadecimal',
+            rotateStringArray: true,
+            shuffleStringArray: true,
+            stringArray: true,
+            stringArrayEncoding: ['base64'],
+            stringArrayThreshold: 0.8,
+            simplify: true
+        };
+
+        const result = JavaScriptObfuscator.obfuscate(injectorCode, opts);
+        outputJs.value = `<script>${result.getObfuscatedCode()}<\/script>`;
+        setSuccess(`Obfuscated! Output: ${outputJs.value.length.toLocaleString()} chars`);
+
+    } catch (err) {
+        // Fallback: Base64-encode the raw injector code
+        try {
+            const b64 = btoa(unescape(encodeURIComponent(injectorCode)));
+            outputJs.value = `<script>eval(atob("${b64}"));<\/script>`;
+            setSuccess(`Base64 fallback applied. Output: ${outputJs.value.length.toLocaleString()} chars`);
+        } catch (e2) {
+            outputJs.value = `// Obfuscation error: ${err.message}`;
+            hideStatus();
+        }
+    }
+}
+
+// ── Button events ─────────────────────────────
+convertBtn.addEventListener('click',   () => processHTML(false));
+obfuscateBtn.addEventListener('click', () => processHTML(true));
+
+uploadBtn.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = evt => {
+        inputHtml.value = evt.target.result;
+        inputStats.textContent = evt.target.result.length.toLocaleString() + ' chars';
+        hideStatus();
+        outputJs.value = '';
+        outputStats.textContent = '0 chars';
+    };
+    reader.readAsText(file);
+    fileInput.value = '';
+});
+
+clearBtn.addEventListener('click', () => {
+    inputHtml.value = '';
+    outputJs.value  = '';
+    inputStats.textContent  = '0 chars';
+    outputStats.textContent = '0 chars';
+    hideStatus();
+});
+
+copyBtn.addEventListener('click', () => {
+    if (!outputJs.value.trim()) return;
+    navigator.clipboard.writeText(outputJs.value)
+        .then(() => {
+            const orig = copyBtn.innerHTML;
+            copyBtn.innerHTML = '✅ Copied!';
+            setTimeout(() => copyBtn.innerHTML = orig, 1500);
+        })
+        .catch(() => {
+            outputJs.select();
+            document.execCommand('copy');
+        });
+});
+
+downloadBtn.addEventListener('click', () => {
+    if (!outputJs.value.trim()) { alert('Generate output first!'); return; }
+    const html = `<!DOCTYPE html>\n<html>\n<head><meta charset="UTF-8"></head>\n<body>\n${outputJs.value}\n</body>\n</html>`;
+    const blob  = new Blob([html], { type: 'text/html' });
+    const url   = URL.createObjectURL(blob);
+    const a     = document.createElement('a');
+    a.href = url;
+    a.download = `obfuscated_${Date.now()}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+});
+
+// ── Demo content ──────────────────────────────
+inputHtml.value = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Hidz</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Hello from Hidz Obfuscator</h1>
+    <p>This is a demo HTML that will be obfuscated.</p>
+    <script>console.log("Scripts are preserved and re-executed!");<\/script>
+</body>
+</html>`;
+inputStats.textContent = inputHtml.value.length.toLocaleString() + ' chars';
+</script>
+</body>
+</html>
