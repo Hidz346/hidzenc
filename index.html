@@ -352,13 +352,16 @@
             alert('Generate obfuscated code first');
             return;
         }
-        const blob = new Blob([outputJs.value], { type: 'text/html' });
+        const htmlContent = `<!DOCTYPE html>\n<html>\n<head><meta charset="UTF-8"></head>\n<body>\n${outputJs.value}\n</body>\n</html>`;
+        const blob = new Blob([htmlContent], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `obfuscated_${Date.now()}.html`;
+        document.body.appendChild(a);
         a.click();
-        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
     });
 
     // Demo default HTML biar mirip
@@ -378,4 +381,4 @@
 </html>`;
 </script>
 </body>
-</html>
+    </html>
